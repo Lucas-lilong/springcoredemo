@@ -19,6 +19,8 @@ public class DemoApplication {
                 ("classpath:applicationContext.xml");
         Simple bean = context.getBean(Simple.class);
         bean.execute();
+
+
         context.close();
     }
 }
