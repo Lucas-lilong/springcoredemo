@@ -1,0 +1,14 @@
+@startuml
+AbstractBeanFactory -> ObjectFactory: createBean()
+ObjectFactory -> AbstractAutowireCapableBeanFactory:createBean()
+AbstractAutowireCapableBeanFactory -> AbstractAutowireCapableBeanFactory: doCreateBean()
+AbstractAutowireCapableBeanFactory -> AbstractAutowireCapableBeanFactory: createBeanInstance()
+AbstractAutowireCapableBeanFactory -> AbstractAutowireCapableBeanFactory: instantiateBean()
+AbstractAutowireCapableBeanFactory -> SimpleInstantiationStrategy: instantiate()
+SimpleInstantiationStrategy -> CglibSubclassingInstantiationStrategy: instantiateWithMethodInjection()
+CglibSubclassingInstantiationStrategy -> CglibSubclassingInstantiationStrategy: instantiate()使用反射实例化
+AbstractAutowireCapableBeanFactory -> AbstractAutowireCapableBeanFactory: populateBean()真正依赖注入
+AbstractAutowireCapableBeanFactory -> AbstractAutowireCapableBeanFactory: applyPropertyValues()对属性进行注入
+AbstractAutowireCapableBeanFactory -> BeanDefinitionValueResolver: resolveValueIfNecessary()解析属性值，对注入类型进行转换
+AbstractAutowireCapableBeanFactory -> AbstractPropertyAccessor: setPropertyValues()
+@enduml
